@@ -6,7 +6,6 @@
 <title>MINDSET</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -305,6 +304,38 @@
   }
 
   .footer-socials a:hover { color: var(--white); }
+
+  @media (max-width: 768px) {
+  /* NAV */
+  .nav-links { display: none; }
+  .nav-right a:first-child { display: none; }
+  nav { padding: 0 20px; }
+
+  /* HERO */
+  .hero-strip {
+    padding: 32px 20px 24px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hero-meta { text-align: left; }
+
+  /* FILTER */
+  .filter-bar { padding: 0; }
+  .filter-btn { padding: 14px 20px; }
+
+  /* PRODUCT GRID - 1 column on mobile */
+  .products { grid-template-columns: 1fr; }
+  .product-card:nth-child(3n) { border-right: 1px solid #1a1a1a; }
+  .product-card:nth-child(1n) { border-right: none; }
+
+  /* FOOTER */
+  footer { grid-template-columns: 1fr 1fr; }
+  .footer-col { padding: 24px 20px; border-right: none; border-bottom: 1px solid #1a1a1a; }
+  .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 12px; text-align: center; }
+  .footer-socials { justify-content: center; }
+}
+
+ 
 </style>
 </head>
 <body>
