@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MINDSET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f3f0;
+    --red: #c8001a;
+    --red-deep: #8c0012;
+    --font-display: 'Times New Roman', Times, serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-cond);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+    background: var(--black);
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-right { display: flex; gap: 24px; align-items: center; }
+
+  .nav-right a {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-right a:hover { color: var(--white); }
+  .nav-right .cart { color: var(--white); }
+
+  /* HERO STRIP */
+  .hero-strip {
+    margin-top: 56px;
+    padding: 48px 40px 36px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  .hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 9vw, 110px);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  display: inline-block;
+  background: linear-gradient(to right, var(--white) 40%, var(--red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-title span { color: inherit; }
+
+  .hero-meta { text-align: right; }
+
+  .hero-meta p {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 2.2;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    border-bottom: 1px solid #1a1a1a;
+    overflow-x: auto;
+  }
+
+  .filter-btn {
+    font-family: var(--font-cond);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #444;
+    background: none;
+    border: none;
+    border-right: 1px solid #1a1a1a;
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover { color: var(--white); }
+  .filter-btn.active { color: var(--white); background: #111; }
+
+  /* PRODUCT GRID */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-card {
+    border-right: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card:nth-child(3n) { border-right: none; }
+
+  /* Placeholder image area */
+  .product-visual {
+    aspect-ratio: 3/4;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .product-card:hover .product-visual { background: #141414; }
+
+  /* When you have the real image, replace the placeholder div with:
+     <img src="your-image.jpg" alt="product name" style="width:100%;height:100%;object-fit:cover;" />
+  */
+  .product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .product-img { transform: scale(1.04); }
+
+  .placeholder-label {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #2a2a2a;
+    text-align: center;
+    padding: 0 20px;
+    line-height: 1.8;
+  }
+
+  .placeholder-label strong {
+    display: block;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+
+  .placeholder-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: #2a2a2a;
+    font-size: 16px;
+  }
+
+  .product-info {
+    padding: 14px 16px 18px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .product-name {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .product-sub {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 6px;
+  }
+
+  .product-price { font-size: 12px; letter-spacing: 0.08em; color: #555; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #1a1a1a;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer-col {
+    padding: 40px;
+    border-right: 1px solid #1a1a1a;
+  }
+
+  .footer-col:last-child { border-right: none; }
+
+  .footer-col-title {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+
+  .footer-links a {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-bottom {
+    border-top: 1px solid #1a1a1a;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2a2a2a;
+  }
+
+  .footer-socials { display: flex; gap: 24px; }
+
+  .footer-socials a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-socials a:hover { color: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">MINDSET</a>
+  <ul class="nav-links">
+    <li><a href="#shop">About</a></li>
+    <li><a href="#shop">New</a></li>
+    <li><a href="#shop">Tees</a></li>
+    <li><a href="#shop">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#">Account</a>
+    <a href="#" class="cart">Cart (0)</a>
+  </div>
+</nav>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <h1 class="hero-title">MIND<span>SET</span></h1>
+  <div class="hero-meta">
+    <p>Los Angeles, CA</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="shop">
+  <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+  <button class="filter-btn" onclick="filterProducts('tees', this)">Tees</button>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="products" id="product-grid">
+
+  <!-- PRODUCT 1: Faces Logo -->
+  <div class="product-card" data-category="tees">
+    <div class="product-visual">
+      <!-- REPLACE: <img class="product-img" src="mindset-faces-tee.jpg" alt="Faces Logo Tee" /> -->
+      <div class="placeholder-icon">+</div>
+      <div class="placeholder-label">
+        <strong>Faces Logo</strong>
+        Replace with JPG
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="product-name">Faces Logo Tee</div>
+      <div class="product-price">$—</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 2: Girl Logo -->
+  <div class="product-card" data-category="tees">
+    <div class="product-visual">
+      <!-- REPLACE: <img class="product-img" src="mindset-girl-tee.jpg" alt="Girl Logo Tee" /> -->
+      <div class="placeholder-icon">+</div>
+      <div class="placeholder-label">
+        <strong>Girl Logo</strong>
+        Replace with JPG
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="product-name">Girl Logo Tee</div>
+      <div class="product-price">$—</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 3: Trees Logo -->
+  <div class="product-card" data-category="tees">
+    <div class="product-visual">
+      <!-- REPLACE: <img class="product-img" src="mindset-trees-tee.jpg" alt="Trees Logo Tee" /> -->
+      <div class="placeholder-icon">+</div>
+      <div class="placeholder-label">
+        <strong>Trees Logo</strong>
+        Replace with JPG
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="product-name">Trees Logo Tee</div>
+      <div class="product-price">$—</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-col">
+    <p class="footer-col-title">Mindset</p>
+    <ul class="footer-links">
+      <li><a href="#">Values</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="#">Core Tees</a></li>
+  
+    </ul>
+  </div>
+  <div class="footer-col">
+    <p class="footer-col-title">Support</p>
+    <ul class="footer-links">
+      <li><a href="#">Sizing Guide</a></li>
+      <li><a href="#">Shipping</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <p class="footer-col-title">Stay Connected</p>
+    <div style="display:flex;">
+      <input type="email" placeholder="your@email.com" style="flex:1;background:#111;border:1px solid #1a1a1a;border-right:none;padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:0.1em;color:#fff;outline:none;" />
+      <button style="background:var(--red);border:none;padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#fff;cursor:pointer;">Join</button>
+    </div>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <p class="footer-copy">© 2026 Mindset</p>
+  <div class="footer-socials">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Twitter</a>
+  </div>
+</div>
+
+<script>
+  const SHOPIFY_URL = "https://shop.mindsetclothing.com"; // <-- CHANGE THIS
+
+  const SHOPIFY_COLLECTIONS = {
+    all:      SHOPIFY_URL + "/collections/all",
+    coreTees: SHOPIFY_URL + "/collections/core-tees",
+    hoodies:  SHOPIFY_URL + "/collections/hoodies",
+  };
+
+  const cardLinks = [
+    SHOPIFY_COLLECTIONS.coreTees,
+    SHOPIFY_COLLECTIONS.coreTees,
+    SHOPIFY_COLLECTIONS.coreTees,
+    SHOPIFY_COLLECTIONS.hoodies,
+  ];
+
+  document.querySelectorAll('.product-card').forEach((card, i) => {
+    card.addEventListener('click', () => window.open(cardLinks[i], '_blank'));
+  });
+
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
