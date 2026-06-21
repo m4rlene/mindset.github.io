@@ -71,6 +71,14 @@
   .hamburger-btn.open span:nth-child(2) { opacity: 0; }
   .hamburger-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
+  .menu-label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    user-select: none;
+  }
+
   .nav-logo {
     font-family: var(--font-display);
     font-size: 22px;
@@ -481,6 +489,7 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
+    <span class="menu-label">Menu</span>
     <a class="nav-logo" href="#"><img src="mindseticon.png" alt="MINDSET" /></a>
   </div>
   <ul class="nav-links">
@@ -509,14 +518,6 @@
     <ul class="menu-section-sub">
       <li><a href="#shop">Short Sleeve</a></li>
       <li><a href="#shop">Long Sleeve</a></li>
-    </ul>
-  </div>
-
-  <div class="menu-section">
-    <a class="menu-section-title" href="#shop">Hoodies</a>
-    <ul class="menu-section-sub">
-      <li><a href="#shop">Pullover</a></li>
-      <li><a href="#shop">Zip-Up</a></li>
     </ul>
   </div>
 
@@ -640,14 +641,12 @@
   const SHOPIFY_COLLECTIONS = {
     all:      SHOPIFY_URL + "/collections/all",
     coreTees: SHOPIFY_URL + "/collections/core-tees",
-    hoodies:  SHOPIFY_URL + "/collections/hoodies",
   };
 
   const cardLinks = [
     SHOPIFY_COLLECTIONS.coreTees,
     SHOPIFY_COLLECTIONS.coreTees,
     SHOPIFY_COLLECTIONS.coreTees,
-    SHOPIFY_COLLECTIONS.hoodies,
   ];
 
   document.querySelectorAll('.product-card').forEach((card, i) => {
