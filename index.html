@@ -553,18 +553,18 @@
 <!-- PRODUCT GRID -->
 <div class="products" id="product-grid">
 
-  <!-- PRODUCT 1: Faces Logo -->
+  <!-- PRODUCT 1: Stay Sharp Tee Logo -->
   <div class="product-card" data-category="tees">
     <div class="product-visual">
       <!-- REPLACE: <img class="product-img" src="mindset-faces-tee.jpg" alt="Faces Logo Tee" /> -->
       <div class="placeholder-icon">+</div>
       <div class="placeholder-label">
-        <strong>Faces Logo</strong>
+        <strong>STAY SHARP</strong>
         Replace with JPG
       </div>
     </div>
     <div class="product-info">
-      <div class="product-name">Faces Logo Tee</div>
+      <div class="product-name">Stay Sharp Tee</div>
       <div class="product-price">$—</div>
     </div>
   </div>
@@ -639,18 +639,13 @@
 </div>
 
 <script>
-  const SHOPIFY_URL = "https://shop.mindsetclothing.com"; // <-- CHANGE THIS
+  const SHOPIFY_URL = "https://0j15vx-vd.myshopify.com";
 
-  const SHOPIFY_COLLECTIONS = {
-    all:      SHOPIFY_URL + "/collections/all",
-    coreTees: SHOPIFY_URL + "/collections/core-tees",
-  };
-
-  const cardLinks = [
-    SHOPIFY_COLLECTIONS.coreTees,
-    SHOPIFY_COLLECTIONS.coreTees,
-    SHOPIFY_COLLECTIONS.coreTees,
-  ];
+const cardLinks = [
+  SHOPIFY_URL + "/products/stay-sharp-tee",
+  SHOPIFY_URL + "/products/free-kid",
+  SHOPIFY_URL + "/products/trees-logo-tee",
+];
 
   document.querySelectorAll('.product-card').forEach((card, i) => {
     card.addEventListener('click', () => window.open(cardLinks[i], '_blank'));
