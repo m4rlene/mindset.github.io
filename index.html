@@ -31,7 +31,7 @@
     overflow-x: hidden;
   }
 
-  /* ───────── NAV ───────── */
+  /* ───────── NAVIGATION ───────── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -321,16 +321,17 @@
   .product-card:nth-child(3n) { border-right: none; }
 
   .product-visual {
-    aspect-ratio: 3/4;
-    background: #111;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
+  aspect-ratio: 3/4;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+  padding: 16px;
+}
 
   .product-card:hover .product-visual { background: #141414; }
 
