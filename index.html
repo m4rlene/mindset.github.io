@@ -628,16 +628,11 @@
 </div>
 
 <script>
-  const SHOPIFY_URL = "https://0j15vx-vd.myshopify.com";
-
-const cardLinks = [
-  SHOPIFY_URL + "/products/stay-sharp-tee",
-  SHOPIFY_URL + "/products/flames-tee",
-  SHOPIFY_URL + "/products/trees-logo-tee",
-];
-
-  document.querySelectorAll('.product-card').forEach((card, i) => {
-    card.addEventListener('click', () => window.open(cardLinks[i], '_blank'));
+  document.querySelectorAll('.product-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const link = card.dataset.link;
+      if (link) window.open(link, '_blank');
+    });
   });
 
   function filterProducts(cat, btn) {
@@ -671,7 +666,7 @@ const cardLinks = [
   menuOverlay.addEventListener('click', closeMenu);
   sideMenuClose.addEventListener('click', closeMenu);
 
-  // ── Scroll fade-in (Intersection Observer) ──
+  // ── Scroll fade-in ──
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
